@@ -2,6 +2,7 @@ module Main where
 
 import qualified Data.Sequence         as S
 import           DistinguishedSymmetricCyclesModule (getVertexOfPMOneDistingSymmCycle,
+                                                     getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle,   
                                                      obtainDecompSequenceForPMOneVertexWRTDistingSymmCycle,
                                                      obtainXVectorForPMOneVertexWRTDistingSymmCycle)
 
@@ -20,6 +21,16 @@ main = do
   putStrLn ("\n" ++ "getVertexOfPMOneDistingSymmCycle 6 9    returns   "  ++ show (getVertexOfPMOneDistingSymmCycle 6 9))
   putStrLn ("\n" ++ "getVertexOfPMOneDistingSymmCycle 6 10   returns   "  ++ show (getVertexOfPMOneDistingSymmCycle 6 10))
   putStrLn ("\n" ++ "getVertexOfPMOneDistingSymmCycle 6 11   returns   "  ++ show (getVertexOfPMOneDistingSymmCycle 6 11) ++ "\n\n")
+
+  putStrLn ("\n" ++ "Let us find the sizes (i.e., cardinalities) of the decomposition sets for four vertices of the hypercube graph H(6,2) with respect to its distinguished symmetric cycle:")
+  putStrLn ("\n" ++ "getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, -1, 1, -1, -1, 1])   returns   "  
+                 ++ show (getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, -1, 1, -1, -1, 1]))) 
+  putStrLn ("\n" ++ "getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, 1, -1, 1, 1, -1])    returns   "  
+                 ++ show (getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, 1, -1, 1, 1, -1]))) 
+  putStrLn ("\n" ++ "getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle (S.fromList [1, -1, -1, 1, -1, 1])    returns   "  
+                 ++ show (getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle (S.fromList [1, -1, -1, 1, -1, 1]))) 
+  putStrLn ("\n" ++ "getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle (S.fromList [1, 1, -1, 1, -1, -1])    returns   "  
+                 ++ show (getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle (S.fromList [1, 1, -1, 1, -1, -1])) ++ "\n\n")   
 
   putStrLn ("\n" ++ "Now, let us obtain the (index sequences of) decomposition sequences for four vertices of the hypercube graph H(6,2) with respect to its distinguished symmetric cycle:")
   putStrLn ("\n" ++ "obtainDecompSequenceForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, -1, 1, -1, -1, 1])   returns   "  
