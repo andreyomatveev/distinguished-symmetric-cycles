@@ -10,4 +10,4 @@ of Finite Sets, and Set Families. Leanpub, 2022, https://leanpub.com/SymmetricCy
 # Distinguished Symmetric Cycles in Hypercube Graphs and Computation-free Vertex Decompositions
 
 In order to avoid a linear algebraic technique, we use an approach to finding decompositions as explained in 
-an accompanying PDF-note.
+the accompanying PDF-note.
