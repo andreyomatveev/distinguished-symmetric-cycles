@@ -22,6 +22,7 @@
 
 module DistinguishedSymmetricCyclesModule
   ( getVertexOfPMOneDistingSymmCycle
+  , getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle
   , obtainDecompSequenceForPMOneVertexWRTDistingSymmCycle
   , obtainXVectorForPMOneVertexWRTDistingSymmCycle
   ) where
@@ -338,3 +339,67 @@ completeCreationOfXVector currentPreXVector remainingEndPointsOfIntervals
      in completeCreationOfXVector
           twiceUpdatedCurrentPreXVector
           (S.drop 1 remainingEndPointsOfIntervals)
+
+getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle :: S.Seq Int -> Int
+-- The name means "To get the size (i.e., cardinality) of the decomposition set for a vertex with respect to a distinguished symmetric cycle in a hypercube graph".
+-- 
+-- Call for instance (for diving once again into Proposition 4.9(i), Example 4.10(i) and Figure 4.3 of the monograph)
+--    ghci>  getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, -1, 1, -1, -1, 1])
+-- to get the result:
+--    3
+-- Call (cf. Proposition 4.9(ii), Example 4.10(ii) and Figure 4.4 of the monograph)
+--    ghci> getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, 1, -1, 1, 1, -1])
+-- to get the result:
+--    5
+-- Call (cf. Proposition 4.9(iii), Example 4.10(iii) and Figure 4.5 of the monograph)
+--    ghci> getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle (S.fromList [1, -1, -1, 1, -1, 1])
+-- to get the result:
+--    5
+-- Call (cf. Proposition 4.9(iv), Example 4.10(iv) and Figure 4.6 of the monograph)
+--    ghci> getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle (S.fromList [1, 1, -1, 1, -1, -1])
+-- to get the result:
+--    3
+getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle intSeq = do
+  if not (isPMOneVertex intSeq)
+    then 0 -- "N/A: The input integer collection is not a plus-one-minus-one-valued vector of dimension >= 3"
+    else do
+      let leng = S.length intSeq
+      if isPositivePMOneVertex intSeq || isNegativePMOneVertex intSeq
+        then 1
+        else if | intSeq `S.index` 0 == -1 && intSeq `S.index` (leng - 1) == 1 ->
+                  let endPointsOfIntervalsLeft =
+                        getEndPointsOfIntervalsPlanA
+                          (S.zip (S.fromList [0 .. leng - 1]) intSeq)
+                          S.empty
+                   in 2 * S.length endPointsOfIntervalsLeft - 1
+                | intSeq `S.index` 0 == -1 && intSeq `S.index` (leng - 1) == -1 ->
+                  let endPointsOfIntervalsLeftRight =
+                        getEndPointsOfIntervalsPlanA
+                          (S.zip (S.fromList [0 .. leng - 1]) intSeq)
+                          S.empty
+                   in 2 * S.length endPointsOfIntervalsLeftRight - 1
+                | intSeq `S.index` 0 == 1 && intSeq `S.index` (leng - 1) == 1 ->
+                  let endPointsOfIntervalsVoid =
+                        getEndPointsOfIntervalsPlanB
+                          (snd
+                             (S.spanl
+                                (\s -> snd s == 1)
+                                (snd
+                                   (S.spanl
+                                      (\s -> snd s == -1)
+                                      (S.zip (S.fromList [0 .. leng - 1]) intSeq)))))
+                          S.empty
+                   in 2 * S.length endPointsOfIntervalsVoid + 1
+                | intSeq `S.index` 0 == 1 && intSeq `S.index` (leng - 1) == -1 ->
+                  let endPointsOfIntervalsRight =
+                        getEndPointsOfIntervalsPlanB
+                          (snd
+                             (S.spanl
+                                (\s -> snd s == 1)
+                                (snd
+                                   (S.spanl
+                                      (\s -> snd s == -1)
+                                      (S.zip (S.fromList [0 .. leng - 1]) intSeq)))))
+                          S.empty
+                   in 2 * S.length endPointsOfIntervalsRight - 1
+      
