@@ -25,6 +25,7 @@ module DistinguishedSymmetricCyclesModule
   , getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle
   , obtainDecompSequenceForPMOneVertexWRTDistingSymmCycle
   , obtainXVectorForPMOneVertexWRTDistingSymmCycle
+  , relabeledOpposite
   ) where
 
 import           Data.List     (find)
@@ -203,7 +204,7 @@ getXVectorWRTDistingSymmCycleLeft vertex = do
         getEndPointsOfIntervalsPlanA
           (S.zip (S.fromList [0 .. leng - 1]) vertex)
           S.empty
-  let pre 
+  let pre
        = S.replicate leng (0 :: Int)
   let preXVector =
         S.update (snd (endPointsOfIntervalsLeft `S.index` 0) + 1) 1 pre
@@ -218,7 +219,7 @@ getXVectorWRTDistingSymmCycleLeftRight vertex = do
         getEndPointsOfIntervalsPlanA
           (S.zip (S.fromList [0 .. leng - 1]) vertex)
           S.empty
-  let pre 
+  let pre
        = S.update 0 (-1) (S.replicate leng (0 :: Int))
   let preXVector =
         S.update
@@ -243,7 +244,7 @@ getXVectorWRTDistingSymmCycleVoid vertex = do
                       (\s -> snd s == -1)
                       (S.zip (S.fromList [0 .. leng - 1]) vertex)))))
           S.empty
-  let preXVector 
+  let preXVector
        = S.update 0 1 (S.replicate leng (0 :: Int))
   completeCreationOfXVector preXVector endPointsOfIntervalsVoid
 
@@ -261,7 +262,7 @@ getXVectorWRTDistingSymmCycleRight vertex = do
                       (\s -> snd s == -1)
                       (S.zip (S.fromList [0 .. leng - 1]) vertex)))))
           S.empty
-  let pre 
+  let pre
        = S.replicate leng (0 :: Int)
   let preXVector =
         S.update
@@ -279,7 +280,7 @@ getEndPointsOfIntervalsPlanA ::
 getEndPointsOfIntervalsPlanA indexedPMOneSeq endPointIndices
   | indexedPMOneSeq == S.empty = endPointIndices
   | otherwise =
-    let endPointsOfCurrentFirstInterval 
+    let endPointsOfCurrentFirstInterval
          =
           ( fst (indexedPMOneSeq `S.index` 0)
           , fst
@@ -298,7 +299,7 @@ getEndPointsOfIntervalsPlanB indexedPMOneSeqWithLongestPrefixOfPositiveElementsR
   | indexedPMOneSeqWithLongestPrefixOfPositiveElementsRemoved == S.empty =
     endPointIndices
   | otherwise =
-    let endPointsOfCurrentFirstInterval 
+    let endPointsOfCurrentFirstInterval
          =
           ( fst
               (indexedPMOneSeqWithLongestPrefixOfPositiveElementsRemoved `S.index`
@@ -324,13 +325,13 @@ completeCreationOfXVector :: S.Seq Int -> S.Seq (Int, Int) -> S.Seq Int
 completeCreationOfXVector currentPreXVector remainingEndPointsOfIntervals
   | remainingEndPointsOfIntervals == S.empty = currentPreXVector
   | otherwise = do
-    let onceUpdatedCurrentPreXVector 
+    let onceUpdatedCurrentPreXVector
          =
           S.update
             (snd (remainingEndPointsOfIntervals `S.index` 0) + 1)
             1
             currentPreXVector
-    let twiceUpdatedCurrentPreXVector 
+    let twiceUpdatedCurrentPreXVector
          =
           S.update
             (fst (remainingEndPointsOfIntervals `S.index` 0))
@@ -402,4 +403,13 @@ getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle intSeq = do
                                       (S.zip (S.fromList [0 .. leng - 1]) intSeq)))))
                           S.empty
                    in 2 * S.length endPointsOfIntervalsRight - 1
-      
+
+relabeledOpposite :: S.Seq PMOne -> S.Seq PMOne
+-- By definition given in Eq. (7.1) of the monograph, to get the relabeled opposite of a vertex, you negate each component 
+-- of the vertex, and then you reverse the resulting vector  
+-- Call for instance
+--    ghci>  relabeledOpposite (S.fromList [-1, -1, 1, -1, -1, 1])
+-- to get the result:
+--    fromList [-1,1,1,-1,1,1]
+relabeledOpposite vertex =
+  S.reverse (fmap negate vertex)
