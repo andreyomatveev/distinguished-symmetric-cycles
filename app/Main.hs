@@ -4,7 +4,8 @@ import qualified Data.Sequence         as S
 import           DistinguishedSymmetricCyclesModule (getVertexOfPMOneDistingSymmCycle,
                                                      getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle,   
                                                      obtainDecompSequenceForPMOneVertexWRTDistingSymmCycle,
-                                                     obtainXVectorForPMOneVertexWRTDistingSymmCycle)
+                                                     obtainXVectorForPMOneVertexWRTDistingSymmCycle,
+                                                     relabeledOpposite)
 
 main :: IO ()
 main = do
@@ -32,7 +33,7 @@ main = do
   putStrLn ("\n" ++ "getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle (S.fromList [1, 1, -1, 1, -1, -1])    returns   "  
                  ++ show (getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle (S.fromList [1, 1, -1, 1, -1, -1])) ++ "\n\n")   
 
-  putStrLn ("\n" ++ "Now, let us obtain the (index sequences of) decomposition sequences for four vertices of the hypercube graph H(6,2) with respect to its distinguished symmetric cycle:")
+  putStrLn ("\n" ++ "Let us obtain the (index sequences of) decomposition sequences for four vertices of the hypercube graph H(6,2) with respect to its distinguished symmetric cycle:")
   putStrLn ("\n" ++ "obtainDecompSequenceForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, -1, 1, -1, -1, 1])   returns   "  
                  ++ show (obtainDecompSequenceForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, -1, 1, -1, -1, 1]))) 
   putStrLn ("\n" ++ "obtainDecompSequenceForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, 1, -1, 1, 1, -1])    returns   "  
@@ -42,8 +43,15 @@ main = do
   putStrLn ("\n" ++ "obtainDecompSequenceForPMOneVertexWRTDistingSymmCycle (S.fromList [1, 1, -1, 1, -1, -1])    returns   "  
                  ++ show (obtainDecompSequenceForPMOneVertexWRTDistingSymmCycle (S.fromList [1, 1, -1, 1, -1, -1])) ++ "\n\n") 
 
-  putStrLn ("\n" ++ "Finally, note that the above descriptions of decompositions have in fact been derived from x-vectors:") 
+  putStrLn ("\n" ++ "Now, note that the above descriptions of decompositions have in fact been derived from x-vectors:") 
   putStrLn ("\n" ++ "obtainXVectorForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, -1, 1, -1, -1, 1])   returns   "  ++ show (obtainXVectorForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, -1, 1, -1, -1, 1])))
   putStrLn ("\n" ++ "obtainXVectorForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, 1, -1, 1, 1, -1])    returns   "  ++ show (obtainXVectorForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, 1, -1, 1, 1, -1])))
   putStrLn ("\n" ++ "obtainXVectorForPMOneVertexWRTDistingSymmCycle (S.fromList [1, -1, -1, 1, -1, 1])    returns   "  ++ show (obtainXVectorForPMOneVertexWRTDistingSymmCycle (S.fromList [1, -1, -1, 1, -1, 1])))
-  putStrLn ("\n" ++ "obtainXVectorForPMOneVertexWRTDistingSymmCycle (S.fromList [1, 1, -1, 1, -1, -1])    returns   "  ++ show (obtainXVectorForPMOneVertexWRTDistingSymmCycle (S.fromList [1, 1, -1, 1, -1, -1])))
+  putStrLn ("\n" ++ "obtainXVectorForPMOneVertexWRTDistingSymmCycle (S.fromList [1, 1, -1, 1, -1, -1])    returns   "  ++ show (obtainXVectorForPMOneVertexWRTDistingSymmCycle (S.fromList [1, 1, -1, 1, -1, -1])) ++ "\n\n")
+
+
+  putStrLn ("\n" ++ "Finally, let us see what the so called relabeled opposites of vertices are:") 
+  putStrLn ("\n" ++ "relabeledOpposite (S.fromList [-1, -1, 1, -1, -1, 1])   returns   "  ++ show (relabeledOpposite (S.fromList [-1, -1, 1, -1, -1, 1])))
+  putStrLn ("\n" ++ "relabeledOpposite (S.fromList [-1, 1, -1, 1, 1, -1])    returns   "  ++ show (relabeledOpposite (S.fromList [-1, 1, -1, 1, 1, -1])))
+  putStrLn ("\n" ++ "relabeledOpposite (S.fromList [1, -1, -1, 1, -1, 1])    returns   "  ++ show (relabeledOpposite (S.fromList [1, -1, -1, 1, -1, 1])))
+  putStrLn ("\n" ++ "relabeledOpposite (S.fromList [-1, -1, 1, -1, -1, 1])   returns   "  ++ show (relabeledOpposite (S.fromList [-1, -1, 1, -1, -1, 1])))
