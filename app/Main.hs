@@ -50,7 +50,7 @@ main = do
   putStrLn ("\n" ++ "obtainXVectorForPMOneVertexWRTDistingSymmCycle (S.fromList [1, 1, -1, 1, -1, -1])    returns   "  ++ show (obtainXVectorForPMOneVertexWRTDistingSymmCycle (S.fromList [1, 1, -1, 1, -1, -1])) ++ "\n\n")
 
 
-  putStrLn ("\n" ++ "Finally, let us see what the so called relabeled opposites of vertices are:") 
+  putStrLn ("\n" ++ "Finally, let us see what the so called relabeled opposites of vertices look like:") 
   putStrLn ("\n" ++ "relabeledOpposite (S.fromList [-1, -1, 1, -1, -1, 1])   returns   "  ++ show (relabeledOpposite (S.fromList [-1, -1, 1, -1, -1, 1])))
   putStrLn ("\n" ++ "relabeledOpposite (S.fromList [-1, 1, -1, 1, 1, -1])    returns   "  ++ show (relabeledOpposite (S.fromList [-1, 1, -1, 1, 1, -1])))
   putStrLn ("\n" ++ "relabeledOpposite (S.fromList [1, -1, -1, 1, -1, 1])    returns   "  ++ show (relabeledOpposite (S.fromList [1, -1, -1, 1, -1, 1])))
