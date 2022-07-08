@@ -1,7 +1,6 @@
 -- Andrey O. Matveev
--- After several observations mentioned in the monograph A.O. Matveev, Symmetric Cycles: A 2D Perspective
--- on Higher Dimensional Discrete Hypercubes, the Power Sets of Finite Sets, and Set Families,
--- Leanpub, 2022, https://leanpub.com/SymmetricCycles .
+-- After several observations mentioned in the monograph A.O. Matveev, Symmetric Cycles,
+-- Jenny Stanford Publishing, 2023, https://www.jennystanford.com/ .
 --
 -- We deal with vertices of the hypercube graph H(t,2). --- Recall that the vertex set of
 -- the graph H(t,2) by convention is the set {1,-1}^t of t-dimensional {1,-1}-valued row vectors that are regarded
