@@ -83,19 +83,19 @@ obtainDecompSequenceForPMOneVertexWRTDistingSymmCycle :: S.Seq Int -> S.Seq Int
 --    the vertices of the decomposition set, regarded as elements of the (length intSeq)-dimensional real Euclidean space, are linearly independent.
 -- Thus, our procedure of decomposing has strong linear algebraic roots, but in reality it is in a sense computation-free, since the procedure is merely
 -- based on revealing the interval structure of the index set of the negative part of a vertex.
--- Call for instance (for diving into Proposition 4.9(i), Example 4.10(i) and Figure 4.3 of the monograph)
+-- Call for instance (for diving into Proposition 5.9(i), Example 5.10(i) and Figure 5.3 of the monograph)
 --    ghci>  obtainDecompSequenceForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, -1, 1, -1, -1, 1])
 -- to get the result:
 --    fromList [2,5,9]
--- Call (cf. Proposition 4.9(ii), Example 4.10(ii) and Figure 4.4 of the monograph)
+-- Call (cf. Proposition 5.9(ii), Example 5.10(ii) and Figure 5.4 of the monograph)
 --    ghci> obtainDecompSequenceForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, 1, -1, 1, 1, -1])
 -- to get the result:
 --    fromList [1,3,6,8,11]
--- Call (cf. Proposition 4.9(iii), Example 4.10(iii) and Figure 4.5 of the monograph)
+-- Call (cf. Proposition 5.9(iii), Example 5.10(iii) and Figure 5.5 of the monograph)
 --    ghci> obtainDecompSequenceForPMOneVertexWRTDistingSymmCycle (S.fromList [1, -1, -1, 1, -1, 1])
 -- to get the result:
 --    fromList [0,3,5,7,10]
--- Call (cf. Proposition 4.9(iv), Example 4.10(iv) and Figure 4.6 of the monograph)
+-- Call (cf. Proposition 5.9(iv), Example 5.10(iv) and Figure 5.6 of the monograph)
 --    ghci> obtainDecompSequenceForPMOneVertexWRTDistingSymmCycle (S.fromList [1, 1, -1, 1, -1, -1])
 -- to get the result:
 --    fromList [3,8,10]
@@ -116,23 +116,23 @@ obtainDecompSequenceForPMOneVertexWRTDistingSymmCycle intSeq =
 
 obtainXVectorForPMOneVertexWRTDistingSymmCycle :: S.Seq Int -> S.Seq Int
 -- The name means "To obtain the x-vector for a vertex with respect to a distinguished symmetric cycle in a hypercube graph".
--- The x-vector is defined in Section 1.1.4 of the monograph. The x-vector is just a concise way to describe
+-- The x-vector is defined in Section 2.1.4 of the monograph. The x-vector is just a concise way to describe
 -- the decomposition set for a vertex with respect to a symmetric cycle. On the theory side, its components
 -- are indexed starting with 1.
 --
--- Call for instance (for diving once again into Proposition 4.9(i), Example 4.10(i) and Figure 4.3 of the monograph)
+-- Call for instance (for diving once again into Proposition 5.9(i), Example 5.10(i) and Figure 5.3 of the monograph)
 --    ghci>  obtainXVectorForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, -1, 1, -1, -1, 1])
 -- to get the result:
 --    fromList [0,0,1,-1,0,1]
--- Call (cf. Proposition 4.9(ii), Example 4.10(ii) and Figure 4.4 of the monograph)
+-- Call (cf. Proposition 5.9(ii), Example 5.10(ii) and Figure 5.4 of the monograph)
 --    ghci> obtainXVectorForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, 1, -1, 1, 1, -1])
 -- to get the result:
 --    fromList [-1,1,-1,1,0,-1]
--- Call (cf. Proposition 4.9(iii), Example 4.10(iii) and Figure 4.5 of the monograph)
+-- Call (cf. Proposition 5.9(iii), Example 5.10(iii) and Figure 5.5 of the monograph)
 --    ghci> obtainXVectorForPMOneVertexWRTDistingSymmCycle (S.fromList [1, -1, -1, 1, -1, 1])
 -- to get the result:
 --    fromList [1,-1,0,1,-1,1]
--- Call (cf. Proposition 4.9(iv), Example 4.10(iv) and Figure 4.6 of the monograph)
+-- Call (cf. Proposition 5.9(iv), Example 5.10(iv) and Figure 5.6 of the monograph)
 --    ghci> obtainXVectorForPMOneVertexWRTDistingSymmCycle (S.fromList [1, 1, -1, 1, -1, -1])
 -- to get the result:
 --    fromList [0,0,-1,1,-1,0]
@@ -169,7 +169,7 @@ isPMOneVertex intSeq =
   S.length intSeq >= 3 && isNothing (find (\c -> (c /= 1) && (c /= -1)) intSeq)
 
 getXVectorWRTDistingSymmCycle :: PMOneVertex -> S.Seq Int
--- After Proposition 4.9
+-- After Proposition 5.9
 getXVectorWRTDistingSymmCycle vertex
 -- Complaints heard here forced us to activate the above "-Wno-incomplete-patterns" language option
   | isPositivePMOneVertex vertex =
@@ -196,7 +196,7 @@ isNegativePMOneVertex vertex =
   S.length vertex >= 3 && isNothing (find (/= (-1)) vertex)
 
 getXVectorWRTDistingSymmCycleLeft :: PMOneVertex -> S.Seq Int
--- See Proposition 4.9 (i)
+-- See Proposition 5.9 (i)
 getXVectorWRTDistingSymmCycleLeft vertex = do
   let leng = S.length vertex
   let endPointsOfIntervalsLeft =
@@ -211,7 +211,7 @@ getXVectorWRTDistingSymmCycleLeft vertex = do
   completeCreationOfXVector preXVector endPointsOfIntervalsLeftRemainder
 
 getXVectorWRTDistingSymmCycleLeftRight :: PMOneVertex -> S.Seq Int
--- See Proposition 4.9 (ii)
+-- See Proposition 5.9 (ii)
 getXVectorWRTDistingSymmCycleLeftRight vertex = do
   let leng = S.length vertex
   let endPointsOfIntervalsLeftRight =
@@ -230,7 +230,7 @@ getXVectorWRTDistingSymmCycleLeftRight vertex = do
   completeCreationOfXVector preXVector endPointsOfIntervalsLeftRightRemainder
 
 getXVectorWRTDistingSymmCycleVoid :: PMOneVertex -> S.Seq Int
--- See Proposition 4.9 (iii)
+-- See Proposition 5.9 (iii)
 getXVectorWRTDistingSymmCycleVoid vertex = do
   let leng = S.length vertex
   let endPointsOfIntervalsVoid =
@@ -248,7 +248,7 @@ getXVectorWRTDistingSymmCycleVoid vertex = do
   completeCreationOfXVector preXVector endPointsOfIntervalsVoid
 
 getXVectorWRTDistingSymmCycleRight :: PMOneVertex -> S.Seq Int
--- See Proposition 4.9 (iv)
+-- See Proposition 5.9 (iv)
 getXVectorWRTDistingSymmCycleRight vertex = do
   let leng = S.length vertex
   let endPointsOfIntervalsRight =
@@ -343,19 +343,19 @@ completeCreationOfXVector currentPreXVector remainingEndPointsOfIntervals
 getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle :: S.Seq Int -> Int
 -- The name means "To get the size (i.e., cardinality) of the decomposition set for a vertex with respect to a distinguished symmetric cycle in a hypercube graph".
 -- 
--- Call for instance (for diving once again into Proposition 4.9(i), Example 4.10(i) and Figure 4.3 of the monograph)
+-- Call for instance (for diving once again into Proposition 5.9(i), Example 5.10(i) and Figure 5.3 of the monograph)
 --    ghci>  getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, -1, 1, -1, -1, 1])
 -- to get the result:
 --    3
--- Call (cf. Proposition 4.9(ii), Example 4.10(ii) and Figure 4.4 of the monograph)
+-- Call (cf. Proposition 5.9(ii), Example 5.10(ii) and Figure 5.4 of the monograph)
 --    ghci> getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle (S.fromList [-1, 1, -1, 1, 1, -1])
 -- to get the result:
 --    5
--- Call (cf. Proposition 4.9(iii), Example 4.10(iii) and Figure 4.5 of the monograph)
+-- Call (cf. Proposition 5.9(iii), Example 5.10(iii) and Figure 5.5 of the monograph)
 --    ghci> getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle (S.fromList [1, -1, -1, 1, -1, 1])
 -- to get the result:
 --    5
--- Call (cf. Proposition 4.9(iv), Example 4.10(iv) and Figure 4.6 of the monograph)
+-- Call (cf. Proposition 5.9(iv), Example 5.10(iv) and Figure 5.6 of the monograph)
 --    ghci> getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle (S.fromList [1, 1, -1, 1, -1, -1])
 -- to get the result:
 --    3
@@ -404,7 +404,7 @@ getSizeOfDecompositionForPMOneVertexWRTDistingSymmCycle intSeq = do
                    in 2 * S.length endPointsOfIntervalsRight - 1
 
 relabeledOpposite :: S.Seq PMOne -> S.Seq PMOne
--- By definition given in Eq. (7.1) of the monograph, to get the relabeled opposite of a vertex, you negate each component 
+-- By definition given in Eq. (8.1) of the monograph, to get the relabeled opposite of a vertex, you negate each component 
 -- of the vertex, and then you reverse the resulting vector  
 -- Call for instance
 --    ghci>  relabeledOpposite (S.fromList [-1, -1, 1, -1, -1, 1])
