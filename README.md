@@ -7,4 +7,4 @@ Based on Proposition 5.9 of the monograph [A.O. Matveev, Symmetric Cycles](https
 
 ## Distinguished Symmetric Cycles in Hypercube Graphs and Computation-free Vertex Decompositions ##
 
-In order to avoid a linear algebraic technique, we use an approach to decompositions that reveals the interval structure of the negative part of the vertex, as explained in the accompanying PDF-note.
+In order to avoid a linear algebraic technique, we use an approach to decomposing that reveals the interval structure of the negative part of the vertex, as explained in the accompanying PDF-note.
