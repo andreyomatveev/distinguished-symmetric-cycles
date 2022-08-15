@@ -108,7 +108,7 @@ obtainDecompSequenceForPMOneVertexWRTDistingSymmCycle intSeq =
             S.zip
               (S.fromList [0 .. S.length intSeq - 1])
               (getXVectorWRTDistingSymmCycle intSeq)
-      let decompSubseqs =
+          decompSubseqs =
             getDecompSequenceForPMOneVertexWRTDistingSymmCycle
               (S.length intSeq)
               indexedXVector
